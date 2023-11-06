@@ -46,13 +46,12 @@ CREATE OR REPLACE STAGE frosty_stage
 list @frosty_stage;
 
 
-//What do we have in here?
-SELECT t.metadata$filename
-,      t.metadata$file_row_number
-,      t.$1
-,      t.$2
-,      t.$3
-FROM @frosty_stage(file_format => 'csv_format');
+//What do we have in here? 
+SELECT metadata$filename
+,      metadata$file_row_number
+,      $1
+FROM @frosty_stage(file_format => 'csv_format')
+ORDER BY metadata$filename, metadata$file_row_number;
 
 
 --Create a table 
